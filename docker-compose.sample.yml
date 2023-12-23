@@ -53,6 +53,8 @@ services:
     restart: always
     cap_add:
       - SYS_PTRACE
+    dns:
+      - 8.8.8.8
     networks:
       - default
 
