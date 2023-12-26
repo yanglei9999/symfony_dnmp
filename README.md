@@ -19,4 +19,14 @@
    $ cp docker-compose.sample.yml docker-compose.yml   # 复制 docker-compose 配置文件。
    $ docker-compose up                                 # 启动
    ```
-5. 在浏览器中访问：`http://localhost`或 `https://localhost`(自签名HTTPS演示)就能看到效果，PHP代码在文件 `./www/localhost/index.php`。
+5. 在浏览器中访问：`http://localhost`
+6. 远程调试php xdebug
+   1. 本地(你自己的电脑)  打开终端 输入
+
+      ```
+      ssh -NR 9003:localhost:9003 root@59.110.33.116 -p 2222
+      或者
+      ssh -R 9003:localhost:9003 root@59.110.33.116 -p 2222
+
+      区别是 -N 取消了终端链接, 只做接口转发 , 用户名和密码都是 root root , 端口只能是 9003, 要改的话请修改 services/php81/php.ini 中的 xdebug.remote_port = 9003
+      ```

@@ -51,8 +51,9 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 # 修改 SSH 配置以允许远程访问
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
-    && echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config \
-    && echo "GatewayPorts yes" >> /etc/ssh/sshd_config
+    && sed -i 's/GatewayPorts no/GatewayPorts yes/' /etc/ssh/sshd_config \
+    && sed -i 's/AllowTcpForwarding no/AllowTcpForwarding yes/' /etc/ssh/sshd_config \
+    && echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
 
 # 复制启动脚本到容器
 COPY start.sh /start.sh
