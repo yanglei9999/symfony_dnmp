@@ -41,7 +41,6 @@ services:
     container_name: php81
     ports:
       - "${PHP81_SSH_PORT}:22"
-      - "${PHP81_XDEBUG_PORT}:9003"
     expose:
       - 9501
     volumes:
